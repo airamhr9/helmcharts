@@ -11,6 +11,6 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
-      {{- if  .Values.service.type eq "NodePort"}}
+      {{- if eq .Values.service.type "NodePort"}}
       nodePort: {{.Values.service.nodePort}}
       {{- end}}
