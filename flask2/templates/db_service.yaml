@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "flask2.fullname" }}-mysql
+  name: {{ include "flask2.fullname" . }}-mysql
 spec:
   selector:
-    app: {{ include "flask2.fullname" }}-mysql
+    app: {{ include "flask2.fullname" . }}-mysql
   ports:
     - name: http
       port: {{ .Values.service.dbPort }}

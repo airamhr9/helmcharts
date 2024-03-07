@@ -3,7 +3,7 @@ entries:
   flask:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-03-07T17:31:35.7643755+01:00"
+    created: "2024-03-07T17:34:38.9223903+01:00"
     description: A Helm chart for Kubernetes
     digest: 6d3dee7b844e6b676babbe0bbac9659aa89b2c15e972d65550c47c074d3d7bb9
     name: flask
@@ -14,12 +14,12 @@ entries:
   flask2:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-03-07T17:31:35.7649433+01:00"
+    created: "2024-03-07T17:34:38.923383+01:00"
     description: A Helm chart for Kubernetes
-    digest: cd78f653efb51b9725f44aaa6ba4815912218344e93de711a1073ef71edbe3db
+    digest: 2e09f7f0579e2ada3e4c3569b2561faa175ad26f43c38d3d1f9ff36a794a3cd1
     name: flask2
     type: application
     urls:
     - flask2-0.1.0.tgz
     version: 0.1.0
-generated: "2024-03-07T17:31:35.7552099+01:00"
+generated: "2024-03-07T17:34:38.9213758+01:00"
