@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "flask2.fullname" .}}-mysql
+  name: {{ include "flask2.fullname" . }}-mysql
   labels:
     app: {{- include "flask2.labels" . | nindent 4}}
 spec:
@@ -11,6 +11,8 @@ spec:
       {{- include "flask2.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      labels:
+        {{- include "flask2.selectorLabels" . | nindent 8 }}
       {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
