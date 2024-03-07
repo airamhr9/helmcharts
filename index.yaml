@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  flask:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-03-07T15:50:02.9957497+01:00"
+    description: A Helm chart for Kubernetes
+    digest: 6d3dee7b844e6b676babbe0bbac9659aa89b2c15e972d65550c47c074d3d7bb9
+    name: flask
+    type: application
+    urls:
+    - https://airamhr9.github.io/helmcharts/flask-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-03-07T15:50:02.9952441+01:00"
