@@ -1,0 +1,64 @@
+# Default values for flask2.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: airamhr9/flask
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+dbImage:
+  repository: mysql
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "5.7"
+
+service:
+  type: ClusterIP
+  port: 80
+  nodePort: 30333
+  dbPort: 3067
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+dbResources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+  app:
+    flask_app: "app.py"
+    flask_env: "development"
+    flask_run_host: "0.0.0.0"
+  db:
+    mysql_user: "patito"
+    mysql_password: "patodegoma"
+    mysql_root_password: "patodegoma"
+    mysql_host: "mysqldb.default"
+    mysql_db: "mysql-database"
+
+db:
+  storage: "500Mi"

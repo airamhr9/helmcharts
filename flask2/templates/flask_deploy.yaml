@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "flask2.fullname" . }}
+  labels:
+    app: {{- include "flask2.labels" . | nindent 4}}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end}}
+  selector:
+    matchLabels:
+      {{- include "flask2.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "flask2.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          env:
+            - name: FLASK_APP
+              value: {{ .Values.env.app.flask_app }}
+            - name: FLASK_ENV
+              value: {{ .Values.env.app.flask_env }}
+            - name: FLASK_RUN_HOST
+              value: {{ .Values.env.app.flask_run_host }}
+            - name: MYSQL_USER
+              value: {{ .Values.env.db.mysql_user }}
+            - name: MYSQL_PASSWORD
+              value: {{ .Values.env.db.mysql_password }}
+            - name: MYSQL_HOST
+              value: {{ .Values.env.db.mysql_host }}
+            - name: MYSQL_DB
+              value: {{ .Values.env.db.mysql_db }}
